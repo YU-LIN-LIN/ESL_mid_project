@@ -23,4 +23,4 @@ https://github.com/YU-LIN-LIN/ESL_mid_project.git
 
 ### Discussions and conclusions
   In this project, I know how to construct TLM model adequately by using TLM bus API and do high level synthesis with stratus tools.
-  
+  Adding HLS configuration to optimize the synthesis result.
