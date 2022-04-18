@@ -12,6 +12,7 @@
 
 ### Behavioral simulation
   make sim_B
+  (output file will be generated in "stratus" directory)
 
 ### Verilog simulation for HLS config "BASIC".
   make sim_V_BASIC
@@ -43,3 +44,4 @@
 
 ### Generate output figure.
   make run
+  (output file will be generated in "build" directory)
