@@ -45,3 +45,7 @@
 ### Generate output figure.
   make run
   (output file will be generated in "build" directory)
+  
+## heapsort_v2 is a newer version of this project
+  Support general input sequence size. (sorter_def.h : change the constant 'SEQ_TOT')
+  Using selection sort as sorter to parallelize better without dependency issue.
