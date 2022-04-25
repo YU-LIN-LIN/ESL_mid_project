@@ -14,12 +14,15 @@ https://github.com/YU-LIN-LIN/ESL_mid_project.git
   
 ### Additional features of your design and models
 	I made a sorter which could sort each element in a sequence in order from minimum to maximum. It supports different input sequence size.
-	The hardware of this sorter can sort 9 elements a time. If the sequence length is less than 9, testbench just needs to send the whole 
-	sequence 1 times and can get a sorted sequence. However, if the sequence length is larger than 9, the input sequence would need to be 
-	partitioned and send to the sorter more than 1 times. Take a 15 elements sequence as an example, it will be partitioned and send into the sorter.
-	At first, index [0] to [8] will be sent into the sorter, then [9] to [14], since the input size of the sorter is 9 elements [15] to [17] will be 
-	set as 255 so that it won't affect the sorting result. And then sent [4] to [12] to the sorter again, now we finish 1 group. I use worst case 
-	to try how many input groups we need to get a sorted sequence. By induction, I get the following conclusion showed in tthe table below.
+	The hardware of this sorter can sort 9 elements a time. If the sequence length is less than 9, 
+	testbench just needs to send the whole sequence 1 times and can get a sorted sequence. 
+	However, if the sequence length is larger than 9, the input sequence would need to be 
+	partitioned and send to the sorter more than 1 times. Take a 15 elements sequence as an example, 
+	it will be partitioned and send into the sorter. At first, index [0] to [8] will be sent into the sorter, 
+	then [9] to [14], since the input size of the sorter is 9 elements [15] to [17] will be 
+	set as 255 so that it won't affect the sorting result. And then sent [4] to [12] to the sorter again, 
+	now we finish 1 group. I use worst case to try how many input groups we need to get a sorted sequence. 
+	By induction, I get the following conclusion showed in tthe table below.
 ![image](https://user-images.githubusercontent.com/61815140/165094493-8926eb28-e4b4-4a27-9c68-45f09bff8107.png)
 
 	By induction, I found that 
