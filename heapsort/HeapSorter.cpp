@@ -5,6 +5,7 @@
 
 #include "HeapSorter.h"
 #include "sorter_def.h"
+#include "directives.h"
 
 HeapSorter::HeapSorter( sc_module_name n ): sc_module( n )
 {
@@ -29,6 +30,11 @@ void HeapSorter::swap(sc_dt::sc_uint<8> &p1, sc_dt::sc_uint<8> &p2) {
 }
 
 void HeapSorter::do_sorter() {
+    // Add a HLS_PIPELINE_LOOP directive that is enabled when II is set.
+    #if defined (I)
+        HLS_PIPELINE_LOOP(SOFT_STALL, II, "Loop" );
+    #endif
+
 	{
         #ifndef NATIVE_SYSTEMC
             HLS_DEFINE_PROTOCOL("main_reset");
@@ -37,15 +43,11 @@ void HeapSorter::do_sorter() {
         #endif
             wait();
 	}
+
+    sc_dt::sc_uint<8> array[SEQ_LEN];
 	
 	while (true) {
-		// Add a HLS_PIPELINE_LOOP directive that is enabled when II is set.
-		#if defined (I)
-			HLS_PIPELINE_LOOP(SOFT_STALL, II, "Loop" );
-		#endif
-
-        sc_dt::sc_uint<8> array[SEQ_LEN];
-
+		
         for (int i = 0; i < SEQ_LEN; i++) {
             #ifndef NATIVE_SYSTEMC
             {
@@ -56,29 +58,46 @@ void HeapSorter::do_sorter() {
             #else
                     array[i] = i_seq.read();
             #endif
+            cout << "sorter received : " << array[i] << endl;
         }
 
         sc_dt::sc_uint<8> result;
-        
-        for (int i = SEQ_LEN-1; i >= 0; i--) {
-            for (int j = ((i + 1) / 2 - 1); j >= 0; j--) {
-                HLS_CONSTRAIN_LATENCY(0, 6, "lat01");
-                if (j == 0) {
-                    if (i >= 1 && array[1] < array[2] && array[1] < array[0]) {
-                        swap(array[1], array[0]);
-                    } else if (i >= 2 && array[2] < array[1] && array[2] < array[0]) {
-                        swap(array[2], array[0]);
-                    }
-                } else {
-                    if (i >= (2*j+1) && array[2*j+1] < array[2*j+2] && array[2*j+1] < array[j]) {
-                        swap(array[2*j+1], array[j]);
-                    } else if (i >= (2*j+2) && array[2*j+2] < array[2*j+1] && array[2*j+2] < array[j]) {
-                        swap(array[2*j+2], array[j]);
-                    }
+
+        // simple sort
+        sc_dt::sc_uint<8> min_addr, min_addr1;
+        for (int i = 0; i < SEQ_LEN; i++) {
+            OUT_LOOP;
+            min_addr = i;
+            min_addr1 = i;
+            // for (int j = i; j < SEQ_LEN; j++) {
+            //     IN_LOOP;
+            //     HLS_CONSTRAIN_LATENCY(0, 2, "lat01");
+            //     if (array[j] < array[min_addr]) {
+            //         min_addr = j;
+            //     }
+            // }
+
+            // swap(array[i], array[min_addr]);
+
+            // unroll by 2
+            for (int j = i; j < SEQ_LEN; j+=2) {
+                IN_LOOP;
+                HLS_CONSTRAIN_LATENCY(0, 4, "lat01");
+                if (array[j] < array[min_addr]) {
+                    min_addr = j;
+                }
+                if ((array[j + 1] < array[min_addr1]) && (j + 1 < SEQ_LEN)) {
+                    min_addr1 = j + 1;
                 }
             }
-            swap(array[0], array[i]);
+            if (array[min_addr] < array[min_addr1]) {
+                swap(array[i], array[min_addr]);
+            } else {
+                swap(array[i], array[min_addr1]);
+            }
+
             result = array[i];
+
             #ifndef NATIVE_SYSTEMC
                 {
                     HLS_DEFINE_PROTOCOL("output");
@@ -89,18 +108,5 @@ void HeapSorter::do_sorter() {
                 o_result.write(result);
             #endif
         }
-
-        // for (int i = 0; i < SEQ_LEN; i++) {
-        //     result = array[i];
-        //     #ifndef NATIVE_SYSTEMC
-        //         {
-        //             HLS_DEFINE_PROTOCOL("output");
-        //             o_result.put(result);
-        //             wait();
-        //         }
-        //     #else
-        //         o_result.write(result);
-        //     #endif
-        // }
 	}
 }

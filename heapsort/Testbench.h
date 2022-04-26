@@ -52,9 +52,12 @@ private:
   // unsigned short bytes_per_pixel;
   // unsigned char *source_bitmap;
   // unsigned char *target_bitmap;
-  unsigned char *source;
-  unsigned char *target;
-  unsigned int count;
+  // unsigned char *source;
+  // unsigned char *target;
+  unsigned int *source;
+  unsigned int *target;
+  // unsigned int count;
+  bool en_send;
 	
 	unsigned int n_txn;
 	sc_time max_txn_time;
