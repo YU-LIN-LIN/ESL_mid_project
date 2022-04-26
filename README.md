@@ -45,6 +45,9 @@
 ### Go into the directory. 
     cd build
 
+### Compile.
+    cmake ..
+  
 ### Read CMakeList.txt and visit the whole directory.
     make
 
