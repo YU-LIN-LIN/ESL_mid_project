@@ -35,14 +35,21 @@ https://github.com/YU-LIN-LIN/ESL_mid_project.git
 
 
 ### Experimental results
-	The result of latency and area are the same with BASIC and PIPELINE. I think the reason is that sorting 
-	needs to input the whole sequence at first in my coding, so it still needs to wait all system input data 
-	enter the hardware then it could start to do calculation.
-	
 	The table below shows latency in different input sequence size :
 ![image](https://user-images.githubusercontent.com/61815140/165208133-1cf4f276-c1d1-431b-86ab-88e8ae79656a.png)
 
+	The result of latency and area are the same with BASIC and PIPELINE. I think the reason is that sorting 
+	needs to input the whole sequence at first in my coding, so it still needs to wait all system input data 
+	enter the hardware then it could start to do calculation.
+	DPAUA means "data path optimization" + "unroll all loops", which has the same result with DPA.
+	I thought that the unroll cannot have a much better latency d,ue to data dependancy in the loop.
+	Thus, I use another version that unroll the inner loop directly in code, and run HLS again.
 	
+![1650940874969](https://user-images.githubusercontent.com/61815140/165209156-a95c75da-bc24-456d-ad52-c00af45cb658.jpg)
+![1650940891984](https://user-images.githubusercontent.com/61815140/165209165-0cff8284-3699-4b08-850b-c5653c7abd6b.jpg)
+
+	The above two figure shows the 2 version of the loop I designed. However, the result is almost the same in these 2 version. 
+	The reason is that 
 ### Discussions and conclusions
   	In this project, I know how to construct TLM model adequately by using TLM bus API and do high level synthesis with stratus tools.
   	Adding HLS configuration to optimize the synthesis result.
