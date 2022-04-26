@@ -2,10 +2,16 @@
 ### HeapSort implementation with TLM and HLS platform
 
 ## heapsort.cpp
-    Software implementation for heap sort.
+   Software implementation for heap sort.
 
 ## heapsort compile
    This directory implements heap sort with HLS.
+   
+### To change input sequence length
+    There are data_9.txt, data_20.txt, data_40.txt, data_60.txt, data_80.txt, data_100.txt in 'heapsort' directory.
+    They are 9-element sequence, 20-element sequence, ... , 100-element sequence respectively.
+    We could choose anyone, copy and paste on data.txt.
+    Then open sorter_def.h, change the defined variable SEQ_TOT to the corresponding number.
   
 ### Enter the strtus directory.
     cd stratus
@@ -27,7 +33,7 @@
     make sim_V_UNROLL
   
 ### Verilog simulation for HLS with loop pipeline.
-    make sim_V_PIPELINE  
+    make sim_V_PIPE
 
 
 ## heapsort_TLM compile
