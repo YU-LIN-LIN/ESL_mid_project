@@ -48,8 +48,11 @@ https://github.com/YU-LIN-LIN/ESL_mid_project.git
 ![1650940874969](https://user-images.githubusercontent.com/61815140/165209156-a95c75da-bc24-456d-ad52-c00af45cb658.jpg)
 ![1650940891984](https://user-images.githubusercontent.com/61815140/165209165-0cff8284-3699-4b08-850b-c5653c7abd6b.jpg)
 
-	The above two figure shows the 2 version of the loop I designed. However, the result is almost the same in these 2 version. 
-	The reason is that 
+	The above two figure shows the 2 version of the loop I designed, the above is origin without unrolling and the 
+	below is unrolling by 2. However, the result is almost the same in these 2 version. 
+	The reason is that the latency constraint of unrolling by 2 needs to be set twice among the origin.
+	
+	
 ### Discussions and conclusions
   	In this project, I know how to construct TLM model adequately by using TLM bus API and do high level synthesis with stratus tools.
   	Adding HLS configuration to optimize the synthesis result.
