@@ -42,8 +42,9 @@ https://github.com/YU-LIN-LIN/ESL_mid_project.git
 	needs to input the whole sequence at first in my coding, so it still needs to wait all system input data 
 	enter the hardware then it could start to do calculation.
 	DPAUA means "data path optimization" + "unroll all loops", which has the same result with DPA.
-	I thought that the unroll cannot have a much better latency d,ue to data dependancy in the loop.
-	Thus, I use another version that unroll the inner loop directly in code, and run HLS again.
+	I thought that the unroll cannot have a much better latency, due to data dependancy in the loop.
+	Thus, I use another version that unroll the inner loop directly in code, which is "unroll by 2" in the above table, 
+	and run HLS again.
 	
 ![1650940874969](https://user-images.githubusercontent.com/61815140/165209156-a95c75da-bc24-456d-ad52-c00af45cb658.jpg)
 ![1650940891984](https://user-images.githubusercontent.com/61815140/165209165-0cff8284-3699-4b08-850b-c5653c7abd6b.jpg)
@@ -52,6 +53,11 @@ https://github.com/YU-LIN-LIN/ESL_mid_project.git
 	below is unrolling by 2. However, the result is almost the same in these 2 version. 
 	The reason is that the latency constraint of unrolling by 2 needs to be set twice among the origin.
 	
+	The following table is the area report. Because the hardware is the same, the area of different input sequence length 
+	wil not have significant difference. I just compare original area and the area after unrolling by 2.
+	
+![image](https://user-images.githubusercontent.com/61815140/165226858-3c770111-4ce6-4e0e-a268-d8fb8fc15307.png)
+![image](https://user-images.githubusercontent.com/61815140/165226884-aea922c9-f757-47b0-af61-fd002346666c.png)
 	
 ### Discussions and conclusions
   	In this project, I know how to construct TLM model adequately by using TLM bus API and do high level synthesis with stratus tools.
