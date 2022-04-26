@@ -27,7 +27,7 @@ https://github.com/YU-LIN-LIN/ESL_mid_project.git
 	will be {[0~8], [9~17], [18~26], [27~35], [4~12], [13~21], [22~30]}, expressed by index. As mentioed above, 
 	the value of the element whose index is larger than 29 will be set as 255. We need input this input group 5 
 	times to get a sorted sequence.
-![image](https://user-images.githubusercontent.com/61815140/165094493-8926eb28-e4b4-4a27-9c68-45f09bff8107.png)
+![image](https://user-images.githubusercontent.com/61815140/165207121-4424399b-738a-41b5-900e-fa618a99e791.png)
 ![1650893104384](https://user-images.githubusercontent.com/61815140/165098182-40fe6414-c54d-4956-acb0-e1094059f2f0.jpg)
  
   	Here is the block diagram of the hardware :
