@@ -9,8 +9,6 @@ https://github.com/YU-LIN-LIN/ESL_mid_project.git
 ### Implementation details
 	In TLM part, I just modify the content of lab4, TLM with bus. Changing the testbench and using sorter to replace Sobel_filter.
   	In HLS part, I also modify the content of lab6, stratus HLS. Changing files as above and rewrite part of the project.tcl.
-  	Here is the table from HLS : 
-![image](https://user-images.githubusercontent.com/61815140/163719941-ec2aacc4-779a-48b5-aad7-f4148bd14ab5.png)
   
 ### Additional features of your design and models
 	I made a sorter that can sort each element in a sequence in order from minimum to maximum. 
@@ -32,14 +30,15 @@ https://github.com/YU-LIN-LIN/ESL_mid_project.git
 ![image](https://user-images.githubusercontent.com/61815140/165094493-8926eb28-e4b4-4a27-9c68-45f09bff8107.png)
 ![1650893104384](https://user-images.githubusercontent.com/61815140/165098182-40fe6414-c54d-4956-acb0-e1094059f2f0.jpg)
  
-  	The result of latency and area are the same with BASIC and PIPELINE. I think the reason is that sorting 
+  	Here is the block diagram of the hardware :
+![1650939676931](https://user-images.githubusercontent.com/61815140/165206720-9612f3c1-37de-49f5-a305-cd11f91ae1ec.jpg)
+
+
+### Experimental results
+	The result of latency and area are the same with BASIC and PIPELINE. I think the reason is that sorting 
 	needs to input the whole sequence at first in my coding, so it still needs to wait all system input data 
 	enter the hardware then it could start to do calculation.
 	
-
-### Experimental results
-![image](https://user-images.githubusercontent.com/61815140/163719955-c58926f5-6779-4504-98e0-b412f3de25d0.png)
-
 ### Discussions and conclusions
   	In this project, I know how to construct TLM model adequately by using TLM bus API and do high level synthesis with stratus tools.
   	Adding HLS configuration to optimize the synthesis result.
