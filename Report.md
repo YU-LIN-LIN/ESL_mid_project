@@ -43,7 +43,7 @@ https://github.com/YU-LIN-LIN/ESL_mid_project.git
 	enter the hardware then it could start to do calculation.
 	DPAUA means "data path optimization" + "unroll all loops", which has the same result with DPA.
 	I thought that the unroll cannot have a much better latency, due to data dependancy in the loop.
-	Thus, I use another version that unroll the inner loop directly in code, which is "unroll by 2" in the above table, 
+	Thus, I use another version that unroll the inner loop directly in code (using HLS command : make sim_V_UNROLL), which is "unroll by 2" in the above table, 
 	and run HLS again.
 	
 ![1650940874969](https://user-images.githubusercontent.com/61815140/165209156-a95c75da-bc24-456d-ad52-c00af45cb658.jpg)
