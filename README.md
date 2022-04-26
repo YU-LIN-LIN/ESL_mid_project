@@ -2,7 +2,7 @@
 ### HeapSort implementation with TLM and HLS platform
 
 ## heapsort.cpp
-  Software implementation for heap sort.
+    Software implementation for heap sort.
 
 ## heapsort compile
   This directory implements heap sort with HLS.
